@@ -5,7 +5,10 @@ MAINTAINER Matthew Barnes <mbarnes@redhat.com>
 # Minecraft's default server port
 EXPOSE 25565
 
-COPY *.jar *.txt server.properties /root/
+RUN apt-get update && apt-get install -y wget
+RUN wget https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar
+
+COPY *.txt server.properties /root/
 
 VOLUME ["/root/world"]
 
