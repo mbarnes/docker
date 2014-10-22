@@ -1,6 +1,6 @@
 # Build a Minecraft server on Debian Stable
 FROM mbarnes/jre
-MAINTAINER Matthew Barnes <mbarnes@redhat.com>from
+MAINTAINER Matthew Barnes <mbarnes@redhat.com>
 
 # Minecraft's default server port
 EXPOSE 25565
