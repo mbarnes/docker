@@ -9,11 +9,12 @@
 FROM mbarnes/jre
 MAINTAINER Matthew Barnes <mbarnes@redhat.com>
 
-# Download the server from Amazon S3.
-RUN apt-get update && apt-get install -y wget
-RUN wget https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar
+# Download the server JAR from Mojang.
+RUN apt-get update && apt-get install --assume-yes wget
+RUN wget --directory-prefix=/root --no-verbose \
+    https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar
 
-# Copy server configuration.
+# Copy the server configuration.
 COPY *.txt server.properties /root/
 
 # Use Minecraft's default server port.
@@ -25,5 +26,5 @@ VOLUME ["/root/world"]
 
 WORKDIR /root
 
-CMD ["/usr/bin/java", "-Xms512M", "-Xmx512M", "-jar", "minecraft_server.1.8.jar", "nogui"]
+CMD ["/usr/bin/java", "-Xms512M", "-Xmx512M", "-jar", "server.jar", "nogui"]
 
