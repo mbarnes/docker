@@ -9,6 +9,11 @@
 FROM mbarnes/jre
 MAINTAINER Matthew Barnes <mbarnes@redhat.com>
 
+# Set the timezone.
+ENV TZ US/Eastern
+RUN ln --symbolic --no-dereference --force /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone
+
 # Create a user for the Minecraft server.
 ENV UID 1000
 ENV GID 1000
